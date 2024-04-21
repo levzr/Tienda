@@ -1,0 +1,20 @@
+{% extends "Tiendita/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="contenedorformularioC">
+    {% if "valido" in request.GET %}
+
+     <p>Informacion enviada correctamente, gracias</p>
+
+
+    {% endif %}
+
+    
+    <form action="" method="post" style="text-align: center;">
+        {% csrf_token %}
+        <table style="color: white; margin: 20px auto">{{formularioC.as_table}}</table>
+        <input type="submit" value="Enviar" style="width: 150px;">
+    </form>
+</div>
+{% endblock %}

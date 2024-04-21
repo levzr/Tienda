@@ -1,0 +1,37 @@
+{% extends "Tiendita/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div style="float:right;">
+
+        {% if request.user.is_authenticated %}
+        {% include "carro/widget.html" %}
+
+        {% else %}
+
+        <div class="alert alert-danger text center">Login para acceso completo</div>
+
+        {% endif %}
+    </div>
+
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-3">
+            <div class="card" style="width: 100%; margin: 30px 5px;">
+                <img src="{{ producto.imagen.url }}" class="card-img-top" style="height: 280px; object-fit: cover;">
+                <div class="card-body" style="text-align: center;">
+                    <h7 class="card-title">{{ producto.nombre_producto }}</h7>
+                    <p class="card-text">{{ producto.precio }}&nbsp;Lps</p>
+                    <p class="card-text">Autor: {{ producto.autor }}</p>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="{% url 'carro:agregar' producto.id_producto %}" class="btn btn-succes">Agregar al carro</a>
+                </div>
+            </div><!--card que se cierra-->
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
